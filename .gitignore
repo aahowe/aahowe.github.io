@@ -25,6 +25,7 @@ Temporary Items
 .apdisk
 
 # Hugo generated files
+/public/
 /resources/_gen/
 /assets/jsconfig.json
 
