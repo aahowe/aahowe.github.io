@@ -34,9 +34,6 @@ jobs:
           submodules: recursive
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-      - name: Configure git to not ignore public directory
-        run: |
-          echo "!/public/" >> .gitignore
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
@@ -57,9 +54,6 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
-      - name: Configure git to not ignore public directory
-        run: |
-          echo "!/public/" >> .gitignore
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
