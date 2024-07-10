@@ -1,0 +1,112 @@
+baseURL: https://howe.wang/
+languageCode: zh-CN
+title: Howe's Blog
+theme: [ "PaperMod" ]
+paginate: 5
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+pygmentsUseClasses: true
+mainsections: [ "posts", "papermod" ]
+defaultContentLanguage: zh
+
+minify:
+  disableXML: true
+  # minifyOutput: true
+
+fa:
+  languagedirection: rtl
+  weight: 3
+  title: PaperMod RTL
+  taxonomies:
+    category: FAcategories
+    tag: FAtags
+    series: FAseries
+  menu:
+    main:
+      - name: FATags
+        url: fatags
+        weight: 10
+  # custom params for each language should be under [langcode].parms - hugo v0.120.0
+  params:
+    homeInfoParams:
+      Title: "Hi there \U0001F44B"
+      Content: Welcome to RTL layout
+
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  env: production
+  description: "Howe的个人博客"
+  author: Howe
+  defaultTheme: auto
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  ShowToc: true
+
+
+  homeInfoParams:
+    Title: "Howe的博客"
+    Content: >
+      👋 欢迎来到我的博客！
+      
+      - 我会在这里更新任何我想写的东西，比如学习笔记、折腾历程、游戏、旅行等等。
+      
+      - 你可以通过以下的方式找到我 🔽
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/aahowe"
+    - name: BiliBili
+      url: "https://space.bilibili.com/12816991"
+    - name: Telegram
+      url: "https://t.me/aahowe"
+    - name: email
+      url: "mailto:howewanghao@gmail.com"
+
+  assets:
+    disableHLJS: true
+    favicon: "/favicon.ico"
+
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: [ "title", "permalink", "summary", "content" ]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+menu:
+  main:
+    - name: 归档
+      url: /archives
+      weight: 3
+    - name: 搜索
+      url: search/
+      weight: 1
+    - name: 分类
+      url: categories/
+      weight: 2
+          
+

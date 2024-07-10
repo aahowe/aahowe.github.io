@@ -1,0 +1,141 @@
++++
+title = '搭建IPv6+SSL中转服务器'
+date = 2022-11-23T20:25:08+08:00
+draft = false
+categories = ["折腾"]
++++
+
+## 前言
+
+在一年多前我写了一个教程[利用云服务器实现校园网免流](https://howe.wang/2021/01/ipv6server/)，在这篇文章中介绍了如何搭建一个使用ShadowSocks协议的IPv6中转服务器，这种方式存在一些弊端，例如：非常容易被GFW嗅探到、客户端已经停更、一些软件的流量无法被接管...经过研究，我找到了一个目前理论上安全性比较高速度也比较快的解决方案，即基于[Trojan](https://trojan-gfw.github.io/trojan/protocol.html)协议，利用TLS加密并且把我们的中转服务器伪装成一个站点。这种方案从技术上来说基本杜绝了被嗅探的可能，让我们的中转服务器更加的稳定。
+
+## 购买服务器
+
+目前支持IPv6的且价格便宜的云服务商也就一个Vultr了，如果还没有注册点击[这里](https://www.vultr.com/?ref=9015661-8H)注册。
+
+![选择服务器类型](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/1.png)
+
+这里选择最普通的服务器就行
+
+![选择服务器地区](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/2.png)
+
+地区我选择的是纽约，因为这里有3.5$一个月的套餐
+
+![选择服务器系统](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/3.png)
+
+系统镜像选择CentOS 7
+
+![选择服务器套餐](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/4.png)
+
+我这里选择的是3.5\$一个月的套餐，每个月有500g的流量，如果你的需求比较大可以选择5\$一个月的套餐
+
+![服务器信息](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/5.png)
+
+查看服务器信息，用IP地址还有密码进行ssh登录
+
+![系统安装中](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/6.png)
+
+刚开通服务器的几分钟内是无法进行ssh连接的，需要等待系统安装完毕
+
+![开启IPv6](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/22.png)
+
+要使用IPv6地址的话得先去设置里添加一个IPv6地址
+
+![设置DNS](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/21.png)
+
+在域名的DNS解析里添加一条AAAA记录指向刚刚分配的IPv6地址
+
+## 申请SSL证书
+
+使用Trojan协议需要一个SSL证书，在等待系统安装的时候我们去[SSL For Free](https://www.sslforfree.com/)申请一个。
+
+![申请](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/8.png)
+
+点击申请一个新的证书
+
+![填入需要申请的域名](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/9.png)
+
+填入需要申请的域名
+
+![选择免费的90天证书](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/10.png)
+
+选择免费的90天证书
+
+![自动填入信息](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/12.png)
+
+这个自动填入信息开着就好
+
+![选择套餐](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/13.png)
+
+选择免费的套餐就行
+
+![验证域名](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/14.png)
+
+在这里需要验证域名的所有权，点击通过DNS验证
+
+![DNS解析](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/15.png)
+
+按照上一步的提示去设置域名的DNS解析
+
+![点击验证](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/16.png)
+
+DNS设置完成后就回到申请页面点击验证
+
+![下载证书](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/17.png)
+
+验证通过后就可以点击下载证书把证书给下载下来
+
+![证书文件](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/20.png)
+
+将压缩包解压可以得到这几个文件
+
+![上传](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/24.png)
+
+将证书文件上传至服务器
+
+## 安装和配置x-ui
+
+[x-ui](https://github.com/vaxilu/x-ui)是一个支持多协议多用户的 xray 面板，支持vmess、vless、trojan、shadowsocks、dokodemo-door、socks、http协议，功能非常强大，我们的trojan服务就是使用它创建和管理的。
+
+### 安装x-ui
+
+在服务器终端输入命令：
+
+```bash
+bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
+```
+
+之后将会执行脚本自动安装，中途需要自行输入后台用户名密码还有端口号。
+
+![安装完成](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/18.png)
+
+安装完成后先停用CentOS的防火墙
+
+```bash
+systemctl stop firewalld
+```
+
+然后在浏览器访问`服务器IP:你设置的端口号`看看是否能够进入x-ui后台，如果成功进入则表示安装成功。
+
+### 配置x-ui
+
+在面板设置里填入刚刚上传的SSL证书路径，点击重启面板，之后就可以通过`域名：端口号`来访问x-ui面板了
+
+![设置SSL证书](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/25.png)
+
+在入站列表添加一个trojan节点，端口填443，公钥和密钥还是填刚刚上传的证书路径，最后点击添加即可
+
+![26](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/26.png)
+
+## 使用Clash连接
+
+虽然支持trojan的客户端有很多，但我最喜欢用的还是Clash，因为它的功能特别强大，甚至可以当作一个网关使用。
+
+在x-ui的入站列表中点击刚刚创建的trojan节点，打开二维码选项就可以复制链接了。
+
+![27](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/27.png)
+
+单独的trojan节点是无法加入Clash的，这里我们需要一个Clash订阅连接转换工具，地址：https://v2rayse.com/v2ray-clash
+
+更多Clash的操作可以参考：https://docs.cfw.lbyczf.com/
+

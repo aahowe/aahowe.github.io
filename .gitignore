@@ -1,0 +1,80 @@
+# macOS generated files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Hugo generated files
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+
+# Hugo cache
+/cache/
+/hugo_stats.json
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Node.js dependencies
+/node_modules/
+/npm-debug.log*
+/yarn-error.log*
+
+# Environment variables
+.env
+
+# IDEs and editors
+.idea/
+/.vscode/
+/*.sublime-project
+/*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+Ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.bak2
+*.bkp
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+*.gz
+
+# Other system files
+.fseventsd
+.Spotlight-V100
+.Trashes
