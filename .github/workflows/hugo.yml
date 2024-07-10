@@ -50,8 +50,9 @@ jobs:
             --minify \
             --baseURL "https://aahowe.github.io/"
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
+          name: public
           path: ./public
 
   # Deployment job
@@ -62,8 +63,9 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
       - name: Download artifact
-        uses: actions/download-pages-artifact@v3
+        uses: actions/download-artifact@v3
         with:
+          name: public
           path: ./public
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
