@@ -1,9 +1,10 @@
 +++
 title = '计算机中的数字'
-date = 2022-07-27T23:36:32+08:00
+date = 2022-07-27
 draft = false
 math = true
 categories = ["学习"]
+
 +++
 
 ## 计算机中的数字是如何表示的
@@ -18,7 +19,7 @@ categories = ["学习"]
 
 为了更加清楚的解释无符号数的表示方法CSAPP中介绍了一种图形化的表示方法来帮助读者理解无符号数的编码方式。
 
-![图片来自b站up九曲阑干](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/number_1.png)
+![图片来自b站up九曲阑干](https://images.howe.wang/number-1.webp)
 
 二进制数从右往左的第`i`位即表示为$2^{i-1}$，将不为0的项相加得到所表示的无符号数。
 
@@ -30,19 +31,19 @@ categories = ["学习"]
 
 若一个有符号数的二进制形式如下：
 
-![图片来自b站up九曲阑干](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/number_2.png)
+![图片来自b站up九曲阑干](https://images.howe.wang/number-2.webp)
 
 那么它的十进制的计算方法为：
 
-![图片来自b站up九曲阑干](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/number_3.png)
+![图片来自b站up九曲阑干](https://images.howe.wang/number-3.webp)
 
 两个例子：
 
-![图片来自b站up九曲阑干](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/number_4.png)
+![图片来自b站up九曲阑干](https://images.howe.wang/number-4.webp)
 
 为了便于理解，补码也有对应的图形化表示方式：
 
-![图片来自b站up九曲阑干](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/number_5.png)
+![图片来自b站up九曲阑干](https://images.howe.wang/number-5.webp)
 
 其中蓝色代表正数，灰色代表负数，由图可知当最高位为`1`时得到的必定为负数。
 
@@ -54,7 +55,7 @@ categories = ["学习"]
 
 字长为`8`到`64`的无符号数所能表示的范围图表：
 
-![图片来自b站up九曲阑干](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/number_6.png)
+![图片来自b站up九曲阑干](https://images.howe.wang/number-6.webp)
 
 ### 有符号数的表示范围
 
@@ -84,7 +85,7 @@ categories = ["学习"]
 
 对于无符号数的扩展非常简单，假设要将`unsigned char`转换为`unsigned short`：
 
-![图片来自b站up九曲阑干](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/number_7.png)
+![图片来自b站up九曲阑干](https://images.howe.wang/number-7.webp)
 
 根据无符号数的定义，只需要在新增加的高位补0即可。
 
@@ -95,7 +96,7 @@ categories = ["学习"]
 1. 若有符号数的符号位为0：在新增加的高位补0
 2. 若有符号数的符号位为1：在新增加的高位补1
 
-![图片来自b站up九曲阑干](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/number_8.png)
+![图片来自b站up九曲阑干](https://images.howe.wang/number-8.webp)
 
 情况1比较容易理解，但是情况2是为什么呢？由数学归纳法可知：如果符号位为1的有符号数扩展1位成立，那么扩展k位也应当成立，下面证明扩展1位的正确性：
 
@@ -115,7 +116,7 @@ $$11x_{w-2}\dots x_{1} x_{0}=-1\times 2^{w}+1\times  2^{w-1} +x_{w-2}\times  2^{
 
 下面以C语言中的单精度浮点数`float`的表示方法为例：
 
-![图片来自b站up九曲阑干](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/number_9.png)
+![图片来自b站up九曲阑干](https://images.howe.wang/number-9.webp)
 
 一共占用32bit的存储空间，其中第31位表示符号位，第23-30位表示阶码，第0-22位表示尾数。
 

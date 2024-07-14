@@ -1,6 +1,6 @@
 +++
 title = 'Git基础命令'
-date = 2022-04-08T23:39:49+08:00
+date = 2022-04-08
 draft = false
 categories = ["学习"]
 +++

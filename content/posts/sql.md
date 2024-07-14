@@ -1,8 +1,9 @@
 +++
 title = 'SQL语句笔记'
-date = 2022-03-30T20:27:21+08:00
+date = 2022-03-30
 draft = false
 categories = ["学习"]
+
 +++
 
 ## 本文所使用的数据库

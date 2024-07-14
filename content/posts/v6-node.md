@@ -1,8 +1,9 @@
 +++
 title = '搭建IPv6+SSL中转服务器'
-date = 2022-11-23T20:25:08+08:00
+date = 2022-11-23
 draft = false
 categories = ["折腾"]
+
 +++
 
 ## 前言
@@ -13,85 +14,85 @@ categories = ["折腾"]
 
 目前支持IPv6的且价格便宜的云服务商也就一个Vultr了，如果还没有注册点击[这里](https://www.vultr.com/?ref=9015661-8H)注册。
 
-![选择服务器类型](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/1.png)
-
 这里选择最普通的服务器就行
 
-![选择服务器地区](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/2.png)
+![选择服务器类型](https://images.howe.wang/v6-node-1.webp)
 
 地区我选择的是纽约，因为这里有3.5$一个月的套餐
 
-![选择服务器系统](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/3.png)
+![选择服务器地区](https://images.howe.wang/v6-node-2.webp)
 
 系统镜像选择CentOS 7
 
-![选择服务器套餐](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/4.png)
+![选择服务器系统](https://images.howe.wang/v6-node-3.webp)
 
 我这里选择的是3.5\$一个月的套餐，每个月有500g的流量，如果你的需求比较大可以选择5\$一个月的套餐
 
-![服务器信息](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/5.png)
+![选择服务器套餐](https://images.howe.wang/v6-node-4.webp)
 
 查看服务器信息，用IP地址还有密码进行ssh登录
 
-![系统安装中](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/6.png)
+![服务器信息](https://images.howe.wang/v6-node-5.webp)
 
 刚开通服务器的几分钟内是无法进行ssh连接的，需要等待系统安装完毕
 
-![开启IPv6](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/22.png)
+![系统安装中](https://images.howe.wang/v6-node-6.webp)
 
 要使用IPv6地址的话得先去设置里添加一个IPv6地址
 
-![设置DNS](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/21.png)
+![开启IPv6](https://images.howe.wang/v6-node-7.webp)
 
 在域名的DNS解析里添加一条AAAA记录指向刚刚分配的IPv6地址
+
+![设置DNS](https://images.howe.wang/v6-node-8.webp)
 
 ## 申请SSL证书
 
 使用Trojan协议需要一个SSL证书，在等待系统安装的时候我们去[SSL For Free](https://www.sslforfree.com/)申请一个。
 
-![申请](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/8.png)
-
 点击申请一个新的证书
 
-![填入需要申请的域名](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/9.png)
+![申请](https://images.howe.wang/v6-node-9.webp)
 
 填入需要申请的域名
 
-![选择免费的90天证书](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/10.png)
+![填入需要申请的域名](https://images.howe.wang/v6-node-10.webp)
 
 选择免费的90天证书
 
-![自动填入信息](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/12.png)
+![选择免费的90天证书](https://images.howe.wang/v6-node-11.webp)
 
 这个自动填入信息开着就好
 
-![选择套餐](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/13.png)
+![自动填入信息](https://images.howe.wang/v6-node-12.webp)
 
 选择免费的套餐就行
 
-![验证域名](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/14.png)
+![选择套餐](https://images.howe.wang/v6-node-13.webp)
 
 在这里需要验证域名的所有权，点击通过DNS验证
 
-![DNS解析](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/15.png)
+![验证域名](https://images.howe.wang/v6-node-14.webp)
 
 按照上一步的提示去设置域名的DNS解析
 
-![点击验证](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/16.png)
+![DNS解析](https://images.howe.wang/v6-node-15.webp)
 
 DNS设置完成后就回到申请页面点击验证
 
-![下载证书](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/17.png)
+![点击验证](https://images.howe.wang/v6-node-16.webp)
 
 验证通过后就可以点击下载证书把证书给下载下来
 
-![证书文件](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/20.png)
+![下载证书](https://images.howe.wang/v6-node-17.webp)
 
 将压缩包解压可以得到这几个文件
 
-![上传](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/24.png)
+![证书文件](https://images.howe.wang/v6-node-18.webp)
 
 将证书文件上传至服务器
+
+![上传](https://images.howe.wang/v6-node-19.webp)
 
 ## 安装和配置x-ui
 
@@ -107,7 +108,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
 
 之后将会执行脚本自动安装，中途需要自行输入后台用户名密码还有端口号。
 
-![安装完成](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/18.png)
+![安装完成](https://images.howe.wang/v6-node-20.webp)
 
 安装完成后先停用CentOS的防火墙
 
@@ -121,11 +122,11 @@ systemctl stop firewalld
 
 在面板设置里填入刚刚上传的SSL证书路径，点击重启面板，之后就可以通过`域名：端口号`来访问x-ui面板了
 
-![设置SSL证书](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/25.png)
+![设置SSL证书](https://images.howe.wang/v6-node-21.webp)
 
 在入站列表添加一个trojan节点，端口填443，公钥和密钥还是填刚刚上传的证书路径，最后点击添加即可
 
-![26](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/26.png)
+![添加trojan节点](https://images.howe.wang/v6-node-22.webp)
 
 ## 使用Clash连接
 
@@ -133,7 +134,7 @@ systemctl stop firewalld
 
 在x-ui的入站列表中点击刚刚创建的trojan节点，打开二维码选项就可以复制链接了。
 
-![27](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/27.png)
+![复制节点](https://images.howe.wang/v6-node-23.webp)
 
 单独的trojan节点是无法加入Clash的，这里我们需要一个Clash订阅连接转换工具，地址：https://v2rayse.com/v2ray-clash
 

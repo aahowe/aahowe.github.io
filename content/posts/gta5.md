@@ -1,6 +1,6 @@
 +++
 title = '跨越7年的补票——GTA5简评'
-date = 2021-01-01T23:41:35+08:00
+date = 2021-01-01
 draft = false
 categories = ["游戏"]
 +++

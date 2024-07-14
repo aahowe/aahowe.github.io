@@ -1,15 +1,16 @@
 +++
 title = 'Hackintosh-黑苹果'
-date = 2022-08-02T23:38:50+08:00
+date = 2022-08-02
 draft = false
 categories = ["折腾"]
+
 +++
 
 ## 什么是黑苹果
 
 根据[Stack Overflow在2021年的统计](https://insights.stackoverflow.com/survey/2021/)中显示：在专业的开发者中有30.04%的人选择使用macOS操作系统。
 
-![Stack Overflow 统计数据](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/hackintosh_1.png)
+![Stack Overflow 统计数据](https://images.howe.wang/hackintosh-1.webp)
 
 可以看到包括macOS在内，类Unix操作系统的使用占比接近60%，这个统计结果足以说明大部分的专业程序员是更加偏向于与类Unix系统的。原因也很好解释，在各种开发过程中不可避免的要使用各式各样的命令行工具、配置各种环境，Windows操作系统的命令行使用体验实在谈不上优秀。
 
@@ -25,7 +26,7 @@ categories = ["折腾"]
 
 目前最流行的制作黑苹果方案是使用[OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg)来引导进入macOS。
 
-![OpenCore bootloader 项目](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/hackintosh_2.png)
+![OpenCore bootloader 项目](https://images.howe.wang/hackintosh-2.webp)
 
 既然想做那就一定要做一台完美的Mac，我们的目标不仅仅是要能运行macOS，而是要实现一台Mac电脑所能实现的所有功能(Wi-Fi、蓝牙、隔空投送、随航、通用控制...)
 
@@ -37,11 +38,11 @@ categories = ["折腾"]
 
 经过不断的折腾和捣鼓，我自己打造了一台Mac Pro Mini。
 
-![我的Mac Pro Mini](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/IMG_1924.JPG)
+![我的Mac Pro Mini](https://images.howe.wang/hackintosh-3.webp)
 
 它的具体配置如下：
 
-![系统信息](https://blog-img-1307133961.cos.ap-shanghai.myqcloud.com/hackintosh_3.png)
+![系统信息](https://images.howe.wang/hackintosh-4.webp)
 
 | 硬件       | 型号                                                         |
 | ---------- | ------------------------------------------------------------ |
