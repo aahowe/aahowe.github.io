@@ -1,8 +1,8 @@
-baseURL: https://howe.wang/
+baseURL: https://aahowe.github.io/
 languageCode: zh-CN
 title: Howe's Blog
 theme: [ "PaperMod" ]
-paginate: 5
+pagination.pagerSize: 5
 enableInlineShortcodes: true
 enableRobotsTXT: true
 buildDrafts: false
