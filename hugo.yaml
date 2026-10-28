@@ -1,8 +1,9 @@
 baseURL: https://howe.wang/
-languageCode: zh-CN
+locale: zh-CN
 title: Howe's Blog
 theme: [ "PaperMod" ]
-pagination.pagerSize: 5
+pagination:
+  pagerSize: 5
 enableInlineShortcodes: true
 enableRobotsTXT: true
 buildDrafts: false
@@ -79,6 +80,9 @@ params:
   assets:
     disableHLJS: true
     favicon: "/favicon.ico"
+
+  footer:
+    text: "[粤ICP备2021127557号-1](https://beian.miit.gov.cn)"
 
 
   fuseOpts:

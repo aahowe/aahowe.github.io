@@ -1,7 +1,7 @@
 +++
 title = 'Hackintosh-黑苹果'
 date = 2022-08-02
-draft = false
+draft = true
 categories = ["折腾"]
 
 +++

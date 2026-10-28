@@ -1,7 +1,7 @@
 +++
 title = 'Android系统获取root权限教程'
 date = 2022-03-18
-draft = false
+draft = true
 categories = ["折腾"]
 +++
 

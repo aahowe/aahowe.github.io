@@ -1,7 +1,7 @@
 +++
 title = '计算机中的数字'
 date = 2022-07-27
-draft = false
+draft = true
 math = true
 categories = ["学习"]
 

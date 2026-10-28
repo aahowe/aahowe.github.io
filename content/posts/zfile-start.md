@@ -1,14 +1,14 @@
 +++
 title = 'ZFile学习笔记——启动！'
 date = 2025-06-07T14:02:08+08:00
-draft = false
+draft = true
 categories = ["学习"]
 
 +++
 
 ## 项目介绍
 
-> ZFile 是一个适用于个人或小团队的在线网盘程序，可以将多种存储类型统一管理，再也不用登录各种网站管理文件，现在你只需要在 ZFile 中畅快使用！——GitHub README
+> ZFile 是一个适用于个人或小团队的在线网盘程序，可以将多种存储类型统一管理，再也不用登录各种网站管理文件，现在你只需要在 ZFile 中畅快使用！——README
 
 我第一次见到这个项目是在折腾LG手机刷机的时候发现的，有人用它托管刷机包。后来我自己把它部署到服务器上试了一下，发现可以很方便的挂载OneDrive，并且可以直接生成下载链接。
 
@@ -39,7 +39,7 @@ categories = ["学习"]
 
 依赖分为几大类，反映了项目的功能模块和技术栈：
 
-#### **Spring Boot相关**
+#### Spring Boot相关
 
 - spring-boot-starter-web: 提供Web开发支持，用于构建RESTful API或Web应用。
 - spring-boot-starter-aop: 支持面向切面编程（AOP），用于日志、事务等横切关注点。
@@ -49,14 +49,14 @@ categories = ["学习"]
 - spring-boot-starter-thymeleaf: Thymeleaf模板引擎，用于服务端渲染HTML页面。
 - spring-boot-starter-validation: Hibernate Validator，用于参数校验。
 
-#### **数据库相关**
+#### 数据库相关
 
 - mysql-connector-j: MySQL数据库驱动（运行时依赖）。
 - sqlite-jdbc: SQLite数据库驱动，支持轻量级数据库。
 - flyway-core, flyway-mysql: Flyway数据库迁移工具（版本10.12.0），用于数据库版本管理和Schema迁移。
 - mybatis-plus-spring-boot3-starter: MyBatis-Plus（版本3.5.6），增强型ORM框架，简化数据库操作。
 
-#### **存储策略相关**
+#### 存储策略相关
 
 - upyun java-sdk: 又拍云存储SDK。
 - software.amazon.awssdk:s3: AWS S3存储支持。
@@ -65,15 +65,15 @@ categories = ["学习"]
 - sardine: WebDAV协议支持。
 - google-api-client: Google API客户端，可能用于Google Drive等存储服务。
 
-#### **认证/权限**
+#### 认证/权限
 
 - sa-token-spring-boot3-starter: Sa-Token（版本1.38.0），轻量级认证授权框架，可能用于用户登录、权限管理和会话控制。
 
-#### **API文档**
+#### API文档
 
 - knife4j-openapi3-jakarta-spring-boot-starter: Knife4j（版本4.5.0），基于OpenAPI 3的API文档生成工具，提供交互式API文档。
 
-#### **工具类**
+#### 工具类
 
 - hutool-all: Hutool工具库，提供丰富的Java工具方法。
 - poi-ooxml: Apache POI，用于处理Excel、Word等Office文档。
@@ -95,11 +95,11 @@ categories = ["学习"]
 - dns-cache-manipulator: DNS缓存操作，可能用于优化网络请求。
 - oshi-core: 系统监控库，用于获取系统资源信息。
 
-#### **GraalVM支持**
+#### GraalVM支持
 
 - graal-sdk: GraalVM SDK（版本24.1.0，provided scope），用于支持GraalVM原生镜像编译。
 
-#### **构建配置（<build>）**
+#### 构建配置
 
 - 插件
   - spring-boot-maven-plugin: Spring Boot构建插件，支持打包可执行JAR。
@@ -191,7 +191,7 @@ OnlyOffice配置页面。
 
 ![下载日志](https://images.howe.wang/2025/06/dcd5e534663f6b5817559c68b91f78ce.webp)
 
-记录用户通过直链/短链下载的记录，可以对齐增删改查。
+记录用户通过直链/短链下载的记录，可以对其增删改查。
 
 ### 9.用户管理
 

@@ -1,7 +1,7 @@
 +++
 title = 'SQL语句笔记'
 date = 2022-03-30
-draft = false
+draft = true
 categories = ["学习"]
 
 +++
