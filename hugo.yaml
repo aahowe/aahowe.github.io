@@ -72,8 +72,6 @@ params:
       url: "https://github.com/aahowe"
     - name: BiliBili
       url: "https://space.bilibili.com/12816991"
-    - name: Telegram
-      url: "https://t.me/aahowe"
     - name: email
       url: "mailto:howewanghao@gmail.com"
 
