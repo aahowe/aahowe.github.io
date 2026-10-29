@@ -98,6 +98,8 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+    parser:
+      wrapStandAloneImageWithinParagraph: false
   highlight:
     noClasses: false
 

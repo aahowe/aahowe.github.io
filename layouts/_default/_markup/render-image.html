@@ -1,0 +1,13 @@
+{{- /* Images under a page's cdnBase come from jsDelivr; if one CDN node fails, try the next. */ -}}
+{{- $src := .Destination -}}
+{{- $size := "" -}}
+{{- with .Page.Params.cdnSize }}{{ $size = printf ` width="%d" height="%d"` (index . 0) (index . 1) }}{{ end -}}
+{{- with .Page.Params.cdnBase -}}
+  {{- if not (strings.Contains $src "://") -}}{{- $src = printf "%s/%s" (strings.TrimSuffix "/" .) $src -}}{{- end -}}
+{{- end -}}
+{{- $img := printf `<img src="%s" alt="%s" loading="lazy" decoding="async"%s onerror="var m=['fastly.jsdelivr.net','testingcf.jsdelivr.net'],i=+(this.dataset.cdn||0);if(this.src.indexOf('jsdelivr.net')>0&&i<m.length){this.dataset.cdn=i+1;this.src=this.src.replace(/\/\/[^/]+/,'//'+m[i])}else{this.onerror=null}">` ($src | htmlEscape) (.PlainText | htmlEscape) $size -}}
+{{- if .IsBlock -}}
+<figure class="cdn-figure">{{ $img | safeHTML }}{{ with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>
+{{- else -}}
+{{ $img | safeHTML }}
+{{- end -}}
