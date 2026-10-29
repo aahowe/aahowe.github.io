@@ -1,0 +1,11 @@
+/* Width/height attributes reserve space before lazy images load; keep the real aspect ratio
+   when the image is narrowed to the column. */
+.post-content img {
+    height: auto;
+}
+
+.post-content figure.cdn-figure figcaption {
+    text-align: center;
+    font-size: 14px;
+    color: var(--secondary);
+}
